@@ -4,18 +4,18 @@
 #include"../include/preprocessor.h"
 #include"../include/comment.h"
 #include"../include/macro.h"
+#include"../include/include.h"
 
 void preprocess_file(const char *filename)
 {
     char *buf;
-    buf=read_from_file(filename);
+    buf = read_from_file(filename);
     remove_comments(buf);
-    printf("%s\n",buf);
-    buf=process_defines(buf);
-    printf("%s\n",buf);
+    buf = process_includes(buf, filename);
+    buf = process_defines(buf);
+    printf("%s\n", buf);
     free(buf);
 }
-
 char *read_from_file(const char *filename)
 {
     FILE *fp;
