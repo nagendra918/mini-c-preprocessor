@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/include.h"
+#include "../include/comment.h"
 
 #define SYSTEM_INCLUDE_PATH "/usr/include/"
 
@@ -38,6 +39,7 @@ static char *read_header(const char *filename)
     }
     buf[size]='\0';
     fclose(fp);
+    remove_comments(buf);
     return buf;
 }
 
